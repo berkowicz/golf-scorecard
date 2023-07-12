@@ -1,0 +1,1 @@
+exact handicap * ( Slope / 113 ) + (CR - Course Par) = Number of strokes player aquires
