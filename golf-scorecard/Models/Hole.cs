@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace golf_scorecard.Models
 {
@@ -6,9 +7,16 @@ namespace golf_scorecard.Models
     {
         [Key]
         public int Id { get; set; }
-        public int Course { get; set; }
+
+        [ForeignKey("Course")]
+        public int CourseRefId { get; set; }
+        public Course Course { get; set; }
+
+        [Required]
         public int Number { get; set; }
+        [Required]
         public int Par { get; set; }
+        [Required]
         public int Index { get; set; }
     }
 }

@@ -8,5 +8,8 @@ namespace golf_scorecard.Models
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
+
+        public ICollection<Hole> Holes { get; set; }
+        public ICollection<SlopeRating> SlopeRatings { get; set; }
     }
 }

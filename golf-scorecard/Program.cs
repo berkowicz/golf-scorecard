@@ -1,3 +1,6 @@
+using golf_scorecard.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace golf_scorecard
 {
     public class Program
@@ -12,6 +15,13 @@ namespace golf_scorecard
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
+            {
+                builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+            }));
+
+            builder.Services.AddDbContext<DataContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             var app = builder.Build();
 
@@ -23,7 +33,7 @@ namespace golf_scorecard
             }
 
             app.UseHttpsRedirection();
-
+            app.UseCors("corsapp");
             app.UseAuthorization();
 
             app.Run();
