@@ -8,11 +8,11 @@ namespace golf_scorecard.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public int CR { get; set; }
+        public float CR { get; set; }
         [Required]
-        public int Slope { get; set; }
+        public float Slope { get; set; }
         [Required]
-        public int SchratchValue { get; set; }
+        public float SchratchValue { get; set; }
 
 
         [ForeignKey("Course")]
