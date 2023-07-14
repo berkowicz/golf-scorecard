@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using golf_scorecard.Data;
 
@@ -10,9 +11,11 @@ using golf_scorecard.Data;
 namespace golf_scorecard.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230714061918_Updaded_Table_name")]
+    partial class Updaded_Table_name
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,7 +69,7 @@ namespace golf_scorecard.Migrations
                     b.Property<int>("CourseRefId")
                         .HasColumnType("int");
 
-                    b.Property<int>("HoleIndex")
+                    b.Property<int>("Index")
                         .HasColumnType("int");
 
                     b.Property<int>("Number")

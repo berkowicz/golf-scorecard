@@ -17,6 +17,6 @@ namespace golf_scorecard.Models
         [Required]
         public int Par { get; set; }
         [Required]
-        public int Index { get; set; }
+        public int HoleIndex { get; set; }
     }
 }
