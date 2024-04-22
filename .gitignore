@@ -1,0 +1,7 @@
+# Ignore any files in /bin and /obj Folders
+**/bin/*
+**/obj/*
+.vs/
+**/Service/*
+golf-scorecard.client/.vs
+golf-scorecard.Server/.vs
