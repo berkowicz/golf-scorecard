@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace golf_scorecard.Server.Models
 {
@@ -10,6 +11,7 @@ namespace golf_scorecard.Server.Models
 
         [ForeignKey("Course")]
         public int CourseRefId { get; set; }
+        [AllowNull]
         public virtual Course Course { get; set; }
 
         [Required]
