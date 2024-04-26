@@ -10,11 +10,11 @@ namespace golf_scorecard.Data
 
         }
 
-        public DbSet<Course> Course { get; set; }
-        public DbSet<Gender> Gender { get; set; }
-        public DbSet<Hole> Hole { get; set; }
-        public DbSet<SlopeRating> SlopeRating { get; set; }
-        public DbSet<Tee> Tee { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Gender> Genders { get; set; }
+        public DbSet<Hole> Holes { get; set; }
+        public DbSet<SlopeRating> SlopeRatings { get; set; }
+        public DbSet<Tee> Tees { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -61,7 +61,7 @@ namespace golf_scorecard.Data
 
                     new SlopeRating{Id = 2, Info = "Nacka Red Man",
                         CourseRefId = 1, GenderRefId = 1, TeeRefId = 2,
-                        CR = 65.3f, Slope = 117f, ScratchValue = -5.7f},
+                        CR = 65.3f, Slope = 117f, ScratchValue = -5.7f },
 
                     new SlopeRating{Id = 3, Info = "Nacka Yellow Woman",
                         CourseRefId = 1, GenderRefId =2, TeeRefId = 1,
