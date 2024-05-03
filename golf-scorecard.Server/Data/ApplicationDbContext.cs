@@ -30,7 +30,7 @@ namespace golf_scorecard.Data
             });
 
             modelBuilder.Entity<Course>().HasData(new Course[] {
-                    new Course{Id = 1, Name = "Nacka GK"}
+                    new Course{Id = 1, Name = "Nacka GK", Par = 72}
             });
 
             modelBuilder.Entity<Hole>().HasData(new Hole[] {

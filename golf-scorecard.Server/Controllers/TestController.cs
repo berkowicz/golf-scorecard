@@ -1,8 +1,11 @@
 ﻿using golf_scorecard.Server.Services;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace golf_scorecard.Server.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class TestController : Controller
     {
         //public IActionResult Index()
@@ -29,6 +32,51 @@ namespace golf_scorecard.Server.Controllers
             //};
 
             return Ok(getdata);
+        }
+
+        //[HttpGet()]
+        //public async Task<IActionResult> GetDataAsync()
+        //{
+        //    var getdata = await _testService.GetDataAsync();
+
+        //    return Ok(getdata);
+        //}
+
+        //[HttpGet()]
+        //public IActionResult GetDataAsync2()
+        //{
+        //    var getdata = _testService.GetDataAsync2();
+
+        //    return Ok(new { getdata });
+        //}
+
+        [HttpGet()]
+        public IActionResult GetDataAsync3()
+        {
+            var getdata = _testService.GetDataAsync3();
+            //HomeViewModel model = new HomeViewModel(getdata);
+
+            var responseData = new
+            {
+                courses = getdata.Courses,
+                genders = getdata.Genders,
+                tees = getdata.Tees,
+            };
+            Console.WriteLine("Response Data: " + JsonConvert.SerializeObject(responseData)); // Log the response data
+            return Json(responseData); // Return the response to the client
+
+
+            //return Ok(new { getdata });
+        }
+
+        [HttpPost("testround")]
+        public async Task<IActionResult> StartRound()
+        {
+
+
+            //var isCorrect = await _gameService.CheckGuess();
+
+            return Ok();
         }
     }
 }
