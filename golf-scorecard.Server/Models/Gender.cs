@@ -8,7 +8,5 @@ namespace golf_scorecard.Server.Models
         public int Id { get; set; }
         [Required]
         public string Type { get; set; }
-
-        public ICollection<SlopeRating>? SlopeRatings { get; set; }
     }
 }

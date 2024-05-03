@@ -1,6 +1,6 @@
 @golf_scorecard.Server_HostAddress = http://localhost:5124
 
-GET {{golf_scorecard.Server_HostAddress}}/weatherforecast/
+GET {{golf_scorecard.Server_HostAddress}}/api/test
 Accept: application/json
 
 ###

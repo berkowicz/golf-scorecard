@@ -24,10 +24,16 @@ namespace golf_scorecard.Server
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddScoped<ITestService, TestService>();
-
+            builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
+            {
+                builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+            }));
+            //builder.Services.AddCors(options => options.AddDefaultPolicy(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
+            //builder.Services.AddCors();
 
             var app = builder.Build();
-
+            app.UseCors("corsapp");
+            //app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:5124"));
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
@@ -42,6 +48,9 @@ namespace golf_scorecard.Server
 
             app.UseAuthorization();
 
+            app.MapControllerRoute(
+                name: "default",
+                pattern: "{controller}/{action=Index}/{id?}");
 
             app.MapControllers();
 

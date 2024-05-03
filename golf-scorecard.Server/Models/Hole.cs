@@ -13,7 +13,6 @@ namespace golf_scorecard.Server.Models
         public int CourseRefId { get; set; }
         [AllowNull]
         public virtual Course Course { get; set; }
-
         [Required]
         public int Number { get; set; }
         [Required]
