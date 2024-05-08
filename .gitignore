@@ -3,5 +3,6 @@
 **/obj/*
 .vs/
 **/Service/*
+/node_modules
 golf-scorecard.client/.vs
 golf-scorecard.Server/.vs
