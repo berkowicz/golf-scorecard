@@ -1,21 +1,33 @@
 import React from 'react';
 
-const Course = ({ value }) => {
-    const course = value; // Courses array
+//const Course = ({ value, value2 }) => {
+//    const courses = value; // Courses array
+//    const course = value2;
+//    console.log(course);
 
-    console.log(course);
+//    const handleCourseChange = (event) => {
+//        setCourse(event.target.value);
+//        console.log(event.target.value);
+//    };
 
-    //const handleCourseChange = (event) => {
-    //    setCourse(event.target.value);
-    //};
-    //onChange={handleCourseChange}
+//    return (
+//        <select value={course} onChange={handleCourseChange}>
+//            <option value="">Select Course</option>
+//            {courses.map(course => (
+//                <option key={course.id} value={course.id}>{course.name}</option>
+//            ))}
+//        </select>
+//    );
+//};
+
+const Course = () => {
+    const courses = "value"; // Courses array
+    console.log(courses);
+
     return (
-        <select value={course} >
-            <option value="">Select Course</option>
-            {course.map(course => (
-                <option key={course.id} value={course.id}>{course.name}</option>
-            ))}
-        </select>
+        <div>
+            <p>{courses}</p>
+        </div>
     );
 };
 
