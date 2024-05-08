@@ -1,12 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
+//import React, { Component } from 'react';
 //import './custom.css';
-import Home from './components/Home';
+//import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+import AppRoutes from './AppRoutes';
+//import { Layout } from './components/Layout';
+//import Home from './components/Home';
 
 function App() {
     return (
-        <div className="App">
-            <Home />
-        </div>
+        <Router>
+            <AppRoutes />
+        </Router>
     );
 }
 
