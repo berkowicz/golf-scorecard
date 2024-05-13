@@ -17,3 +17,19 @@ th, td {
     padding-left: 1rem;
     padding-right: 1rem;
 }
+
+.wrapper {
+    background: #ffffff;
+    border-radius: 2rem;
+    border: 2px solid black;
+    margin: 2rem auto;
+    min-width: 24rem;
+    max-width: fit-content;
+    min-height: 30rem;
+}
+
+.home-container {
+    position: relative;
+    margin: 0 auto;
+    width: fit-content;
+}

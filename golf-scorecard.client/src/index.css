@@ -12,6 +12,25 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.button-blue {
+    padding: 10px 20px;
+    background-color: #1e90ff; /* Sample blue color; adjust as needed */
+    border: none;
+    border-radius: 8px; /* Rounded corners */
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    cursor: pointer;
+    transition: transform 0.2s; /* Smooth press effect */
+}
+
+
+.home-container {
+    position: relative;
+    margin: 0 auto;
+    width: fit-content;
+}
+
 
 a {
   font-weight: 500;

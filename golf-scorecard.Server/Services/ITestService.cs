@@ -8,8 +8,10 @@ namespace golf_scorecard.Server.Services
         // /test/{id}
         Task<SlopeRating> GetDataByPublicIdAsync(int id);
         // /test
-        //Task<HomeViewModel> GetDataAsync();
+        Task<HomeViewModel> GetDataAsync();
         //HomeViewModel GetDataAsync2();
-        HomeViewModel GetDataAsync3();
+        //HomeViewModel GetDataAsync3();
+
+        Task<SlopeRating> StartRound(NewGameDataViewModel newGameData);
     }
 }
