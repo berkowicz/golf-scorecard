@@ -1,6 +1,6 @@
-﻿using golf_scorecard.Server.Services;
+﻿using golf_scorecard.Server.Models.ViewModels;
+using golf_scorecard.Server.Services;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace golf_scorecard.Server.Controllers
 {
@@ -34,13 +34,22 @@ namespace golf_scorecard.Server.Controllers
             return Ok(getdata);
         }
 
-        //[HttpGet()]
-        //public async Task<IActionResult> GetDataAsync()
-        //{
-        //    var getdata = await _testService.GetDataAsync();
+        [HttpGet()]
+        public async Task<IActionResult> GetDataAsync()
+        {
+            var getdata = await _testService.GetDataAsync();
 
-        //    return Ok(getdata);
-        //}
+            return Ok(getdata);
+        }
+
+        [HttpPost()]
+        public async Task<IActionResult> StartRound(NewGameDataViewModel newGameData)
+        {
+
+            var x = await _testService.StartRound(newGameData);
+
+            return Ok(x);
+        }
 
         //[HttpGet()]
         //public IActionResult GetDataAsync2()
@@ -50,33 +59,25 @@ namespace golf_scorecard.Server.Controllers
         //    return Ok(new { getdata });
         //}
 
-        [HttpGet()]
-        public IActionResult GetDataAsync3()
-        {
-            var getdata = _testService.GetDataAsync3();
-            //HomeViewModel model = new HomeViewModel(getdata);
+        //[HttpGet()]
+        //public IActionResult GetDataAsync3()
+        //{
+        //    var getdata = _testService.GetDataAsync3();
+        //    //HomeViewModel model = new HomeViewModel(getdata);
 
-            var responseData = new
-            {
-                courses = getdata.Courses,
-                genders = getdata.Genders,
-                tees = getdata.Tees,
-            };
-            Console.WriteLine("Response Data: " + JsonConvert.SerializeObject(responseData)); // Log the response data
-            return Json(responseData); // Return the response to the client
-
-
-            //return Ok(new { getdata });
-        }
-
-        [HttpPost("testround")]
-        public async Task<IActionResult> StartRound()
-        {
+        //    var responseData = new
+        //    {
+        //        courses = getdata.Courses,
+        //        genders = getdata.Genders,
+        //        tees = getdata.Tees,
+        //    };
+        //    Console.WriteLine("Response Data: " + JsonConvert.SerializeObject(responseData)); // Log the response data
+        //    return Json(responseData); // Return the response to the client
 
 
-            //var isCorrect = await _gameService.CheckGuess();
+        //    //return Ok(new { getdata });
+        //}
 
-            return Ok();
-        }
+
     }
 }

@@ -5,6 +5,7 @@ import Course from "./Course";
 import Gender from './Gender';
 import Button from 'react-bootstrap/Button';
 
+
 const apiHost = "https://localhost:7287/api/Test";
 
 const GolfStartScreen = () => {
@@ -19,6 +20,12 @@ const GolfStartScreen = () => {
     const [handicap, setHandicap] = useState('');
     const [submited, setSubmited] = useState(false);
     const [submitData, setSubmitData] = useState([[]]);
+
+    useEffect(() => {
+        if (submited) {
+            preventdefault();
+        }
+    }, [submited]);
 
     useEffect(() => {
         // Fetch the data when the component mounts
@@ -68,19 +75,17 @@ const GolfStartScreen = () => {
         //event.preventdefault();
         if (tee != '' || course != '' || gender != '' || handicap != '') {
             setSubmited(true);
+            const data2 = [tee, course, gender, handicap]
             const data = [[tee], [course], [gender], [handicap]]
+            console.log(data2,data)
             setSubmitData(data)
             if (tee != '') {
                 console.log("tee-id: ", tee);
             }
-            await timeout(10000);
-            console.log("hej");
-            console.log(submitData);
-            //submitData()
         }
         else {
             console.error('Select all fields:', error);
-            await timeout(1000);
+            await timeout(10000);
             return;
         }
         
