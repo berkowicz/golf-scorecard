@@ -4,10 +4,10 @@ using golf_scorecard.Server.Models.ViewModels;
 
 namespace golf_scorecard.Server.Services
 {
-    public class TestService : ITestService
+    public class SelectService : ISelectService
     {
         private readonly ApplicationDbContext _context;
-        public TestService(ApplicationDbContext context)
+        public SelectService(ApplicationDbContext context)
         {
             _context = context;
         }

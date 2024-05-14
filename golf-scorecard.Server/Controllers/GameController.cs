@@ -6,33 +6,33 @@ namespace golf_scorecard.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TestController : Controller
+    public class GameController : Controller
     {
         //public IActionResult Index()
         //{
         //    return View();
         //}
 
-        private readonly ITestService _testService;
+        private readonly ISelectService _testService;
 
-        public TestController(ITestService testService)
+        public GameController(ISelectService testService)
         {
             _testService = testService;
         }
 
-        [HttpGet("test/{id}")]
-        public async Task<IActionResult> TestData(int id)
-        {
-            // Return a userquiz by it's id
-            var getdata = await _testService.GetDataByPublicIdAsync(id);
+        //[HttpGet("test/{id}")]
+        //public async Task<IActionResult> TestData(int id)
+        //{
+        //    // Return a userquiz by it's id
+        //    var getdata = await _testService.GetDataByPublicIdAsync(id);
 
-            //var hej = new Hole()
-            //{
-            //    Id = getdata.Id,
-            //};
+        //    //var hej = new Hole()
+        //    //{
+        //    //    Id = getdata.Id,
+        //    //};
 
-            return Ok(getdata);
-        }
+        //    return Ok(getdata);
+        //}
 
         [HttpGet()]
         public async Task<IActionResult> GetDataAsync()
@@ -47,6 +47,7 @@ namespace golf_scorecard.Server.Controllers
         {
 
             var x = await _testService.StartRound(newGameData);
+            Console.WriteLine(x);
 
             return Ok(x);
         }

@@ -23,7 +23,8 @@ namespace golf_scorecard.Server
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddScoped<ITestService, TestService>();
+            builder.Services.AddScoped<ISelectService, SelectService>();
+            builder.Services.AddScoped<IGameService, GameService>();
             builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
             {
                 builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
