@@ -1,5 +1,4 @@
-﻿using golf_scorecard.Server.Models.ViewModels;
-using golf_scorecard.Server.Services;
+﻿using golf_scorecard.Server.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace golf_scorecard.Server.Controllers
@@ -8,77 +7,19 @@ namespace golf_scorecard.Server.Controllers
     [ApiController]
     public class GameController : Controller
     {
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
+        private readonly IGameService _gameService;
 
-        private readonly ISelectService _testService;
-
-        public GameController(ISelectService testService)
+        public GameController(IGameService gameService)
         {
-            _testService = testService;
+            _gameService = gameService;
         }
 
-        //[HttpGet("test/{id}")]
-        //public async Task<IActionResult> TestData(int id)
+        //[HttpGet()]
+        //public async Task<IActionResult> GetGameData()
         //{
-        //    // Return a userquiz by it's id
-        //    var getdata = await _testService.GetDataByPublicIdAsync(id);
-
-        //    //var hej = new Hole()
-        //    //{
-        //    //    Id = getdata.Id,
-        //    //};
+        //    var getdata = await _gameService.GetGameData();
 
         //    return Ok(getdata);
         //}
-
-        [HttpGet()]
-        public async Task<IActionResult> GetDataAsync()
-        {
-            var getdata = await _testService.GetDataAsync();
-
-            return Ok(getdata);
-        }
-
-        [HttpPost()]
-        public async Task<IActionResult> StartRound(NewGameDataViewModel newGameData)
-        {
-
-            var x = await _testService.StartRound(newGameData);
-            Console.WriteLine(x);
-
-            return Ok(x);
-        }
-
-        //[HttpGet()]
-        //public IActionResult GetDataAsync2()
-        //{
-        //    var getdata = _testService.GetDataAsync2();
-
-        //    return Ok(new { getdata });
-        //}
-
-        //[HttpGet()]
-        //public IActionResult GetDataAsync3()
-        //{
-        //    var getdata = _testService.GetDataAsync3();
-        //    //HomeViewModel model = new HomeViewModel(getdata);
-
-        //    var responseData = new
-        //    {
-        //        courses = getdata.Courses,
-        //        genders = getdata.Genders,
-        //        tees = getdata.Tees,
-        //    };
-        //    Console.WriteLine("Response Data: " + JsonConvert.SerializeObject(responseData)); // Log the response data
-        //    return Json(responseData); // Return the response to the client
-
-
-        //    //return Ok(new { getdata });
-        //}
-
-
     }
 }

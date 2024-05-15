@@ -2,7 +2,7 @@
 {
     public class NewGameDataViewModel
     {
-        public float Handicap { get; set; }
+        public int Handicap { get; set; }
         public int CourseId { get; set; }
         public int TeeId { get; set; }
         public int GenderId { get; set; }

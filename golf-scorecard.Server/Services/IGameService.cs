@@ -2,5 +2,6 @@
 {
     public interface IGameService
     {
+        //Task<HomeViewModel> GetGameData();
     }
 }

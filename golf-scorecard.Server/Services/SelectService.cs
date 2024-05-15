@@ -46,33 +46,171 @@ namespace golf_scorecard.Server.Services
         }
 
 
-        public async Task<SlopeRating> StartRound(NewGameDataViewModel newGameData)
+        public async Task<StrokesViewModel> StartRound(NewGameDataViewModel newGameData)
         {
-            var data = _context.SlopeRatings
+            try
+            {
+                var slopeRating = _context.SlopeRatings
                 .Where(x => x.CourseRefId == newGameData.CourseId
                 && x.TeeRefId == newGameData.TeeId
                 && x.GenderRefId == newGameData.GenderId).FirstOrDefault();
 
-            //int strokes = CalculateStrokes(data, newGameData);
+                int strokes = CalculateStrokes(slopeRating, newGameData);
 
-            if (data == null)
+                var strokesViewModel = new StrokesViewModel
+                {
+                    Strokes = strokes,
+                };
+
+
+
+                //Console.WriteLine(Task.FromResult(createNewGameViewModel).Result);
+
+                if (strokesViewModel == null)
+                {
+                    return await Task.FromResult<StrokesViewModel>(null);
+                }
+                else
+                    return await Task.FromResult(strokesViewModel);
+            }
+            catch (Exception ex)
             {
-                return await Task.FromResult<SlopeRating>(null);
+                // Log or handle the exception
+                return null; // or other appropriate action
             }
 
-            return await Task.FromResult(data);
+
         }
-
-
         public int CalculateStrokes(SlopeRating? sr, NewGameDataViewModel newGameData)
         {
             var course = _context.Courses.Where(x => x.Id == newGameData.CourseId).FirstOrDefault();
             float coursePar = course.Par;
+            float floatHandicap = newGameData.Handicap;
             //exact handicap *(Slope / 113) + (CR - Course Par) = Number of strokes player aquires
-            float strokes = newGameData.Handicap * (sr.Slope / 113f) + (sr.CR - coursePar);
+            float strokes = floatHandicap * (sr.Slope / 113f) + (sr.CR - coursePar);
             int roundedStrokes = (int)Math.Floor(strokes);
             return roundedStrokes;
         }
+
+        //public async Task<string> StartRound(NewGameDataViewModel newGameData)
+        //{
+        //    try
+        //    {
+        //        var slopeRating = _context.SlopeRatings
+        //        .Where(x => x.CourseRefId == newGameData.CourseId
+        //        && x.TeeRefId == newGameData.TeeId
+        //        && x.GenderRefId == newGameData.GenderId).FirstOrDefault();
+
+        //        var holes = _context.Holes
+        //            .Where(x => x.CourseRefId == newGameData.CourseId).ToList();
+
+        //        int handicap = newGameData.Handicap;
+
+        //        int strokes = CalculateStrokes(slopeRating, newGameData);
+
+        //        var createNewGameViewModel = new CreateNewGameViewModel
+        //        {
+        //            Handicap = handicap,
+        //            Strokes = strokes,
+        //            Holes = holes,
+        //        };
+
+
+
+        //        // Serialize object with reference handling
+        //        var options = new JsonSerializerOptions
+        //        {
+        //            ReferenceHandler = ReferenceHandler.Preserve
+        //        };
+        //        var jsonString = JsonSerializer.Serialize(createNewGameViewModel, options);
+
+
+
+        //        //Console.WriteLine(Task.FromResult(createNewGameViewModel).Result);
+
+        //        if (createNewGameViewModel == null)
+        //        {
+        //            return await Task.FromResult<string>(null);
+        //        }
+        //        else
+        //            return await Task.FromResult(jsonString);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Log or handle the exception
+        //        return null; // or other appropriate action
+        //    }
+
+
+        //}
+
+        //public List<HolesViewModel> GetHoles(int courseId)
+        //{
+        //    var holes = _context.Holes
+        //            .Where(x => x.CourseRefId == courseId).ToList();
+
+        //    List<HoleViewModel> holeViewModels = new List<HoleViewModel>();
+
+        //    HoleViewModel hvm = new HoleViewModel();
+        //    foreach (Hole x in holes)
+        //    {
+        //        hvm = new
+        //        {
+        //            hvm.Id = x.Id;
+        //            hvm.Number = x.Number;
+        //            hvm.Par = x.Par;
+        //            hvm.HoleIndex = x.HoleIndex;
+        //        }
+        //        holeViewModels.Add(hvm);
+
+
+        //    }
+
+        //    return holeViewModels;
+        //}
+
+
+
+
+        //public async Task<CreateNewGameViewModel> StartRound(int handicap, int gender, int course, int tee)
+        //{
+        //    var slopeRating = _context.SlopeRatings
+        //        .Where(x => x.CourseRefId == course
+        //        && x.TeeRefId == tee
+        //        && x.GenderRefId == gender).FirstOrDefault();
+
+        //    var holes = _context.Holes
+        //        .Where(x => x.CourseRefId == course).ToList();
+
+        //    float hcp = handicap;
+
+        //    int strokes = CalculateStrokes(slopeRating, handicap, gender, course, tee);
+
+        //    var createNewGameViewModel = new CreateNewGameViewModel
+        //    {
+        //        Handicap = hcp,
+        //        Strokes = strokes,
+        //        Holes = holes,
+        //    };
+
+        //    if (createNewGameViewModel == null)
+        //    {
+        //        return await Task.FromResult<CreateNewGameViewModel>(null);
+        //    }
+        //    else
+        //        return await Task.FromResult(createNewGameViewModel);
+        //}
+
+        //public int CalculateStrokes(SlopeRating? sr, int handicap, int gender, int course, int tee)
+        //{
+        //    var _course = _context.Courses.Where(x => x.Id == course).FirstOrDefault();
+        //    float coursePar = _course.Par;
+        //    //exact handicap *(Slope / 113) + (CR - Course Par) = Number of strokes player aquires
+        //    float strokes = handicap * (sr.Slope / 113f) + (sr.CR - coursePar);
+        //    int roundedStrokes = (int)Math.Floor(strokes);
+        //    return roundedStrokes;
+        //}
+
 
 
         //public HomeViewModel GetDataAsync2()
