@@ -20,6 +20,96 @@ namespace golf_scorecard.Server.Controllers
             _selectService = selectService;
         }
 
+        //Get data to select game options
+        [HttpGet()]
+        public async Task<IActionResult> GetDataAsync()
+        {
+            var getdata = await _selectService.GetDataAsync();
+
+            return Ok(getdata);
+        }
+
+        [HttpPost("{tee}/{course}/{gender}/{handicap}")]
+        public async Task<IActionResult> StartRound(int tee, int course, int gender, int handicap)
+        {
+            NewGameDataViewModel newGameData = new NewGameDataViewModel
+            {
+                Handicap = handicap,
+                CourseId = course,
+                TeeId = tee,
+                GenderId = gender,
+            };
+
+            Console.WriteLine(newGameData.Handicap);
+            Console.WriteLine(newGameData.GenderId);
+            Console.WriteLine(newGameData.CourseId);
+            Console.WriteLine(newGameData.TeeId);
+
+            var strokes = await _selectService.StartRound(newGameData);
+
+            return Ok(strokes);
+
+        }
+
+        ////Creates new game and returns data with guid for game
+        //[HttpPost()]
+        //public async Task<IActionResult> StartRound(NewGameDataViewModel newGameData)
+        //{
+
+        //    var createNewGame = await _selectService.StartRound(newGameData);
+        //    Console.WriteLine(createNewGame.Strokes);
+
+        //    return Ok(createNewGame);
+        //}
+
+        //Creates new game and returns data with guid for game
+        //[HttpPost("{tee}/{course}/{gender}/{handicap}")]
+        //public async Task<IActionResult> StartRound(int tee, int course, int gender, int handicap)
+        //{
+        //    NewGameDataViewModel newGameData = new NewGameDataViewModel
+        //    {
+        //        Handicap = handicap,
+        //        CourseId = course,
+        //        TeeId = tee,
+        //        GenderId = gender,
+        //    };
+
+        //    Console.WriteLine(newGameData.Handicap);
+        //    Console.WriteLine(newGameData.GenderId);
+        //    Console.WriteLine(newGameData.CourseId);
+        //    Console.WriteLine(newGameData.TeeId);
+
+        //    var strokes = await _selectService.StartRound(newGameData);
+
+        //    return Ok(strokes);
+
+        //}
+
+        //[HttpPost()]
+        //public async Task<IActionResult> StartRound([FromBody] List<int> submitData)
+        //{
+        //    NewGameDataViewModel newGameData = new NewGameDataViewModel
+        //    {
+        //        TeeId = submitData[0],
+        //        CourseId = submitData[1],
+        //        GenderId = submitData[2],
+        //        Handicap = submitData[3]
+        //    };
+
+        //    Console.WriteLine(newGameData.Handicap);
+        //    Console.WriteLine(newGameData.GenderId);
+        //    Console.WriteLine(newGameData.CourseId);
+        //    Console.WriteLine(newGameData.TeeId);
+        //    var createNewGame = await _selectService.StartRound(newGameData);
+        //    return Ok(createNewGame);
+
+        //}
+
+
+
+
+
+
         //[HttpGet("test/{id}")]
         //public async Task<IActionResult> TestData(int id)
         //{
@@ -34,23 +124,6 @@ namespace golf_scorecard.Server.Controllers
         //    return Ok(getdata);
         //}
 
-        [HttpGet()]
-        public async Task<IActionResult> GetDataAsync()
-        {
-            var getdata = await _selectService.GetDataAsync();
-
-            return Ok(getdata);
-        }
-
-        [HttpPost()]
-        public async Task<IActionResult> StartRound(NewGameDataViewModel newGameData)
-        {
-
-            var x = await _selectService.StartRound(newGameData);
-            Console.WriteLine(x);
-
-            return Ok(x);
-        }
 
         //[HttpGet()]
         //public IActionResult GetDataAsync2()

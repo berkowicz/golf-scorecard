@@ -7,11 +7,13 @@ namespace golf_scorecard.Server.Services
     {
         // /test/{id}
         Task<SlopeRating> GetDataByPublicIdAsync(int id);
-        // /test
-        Task<HomeViewModel> GetDataAsync();
-        //HomeViewModel GetDataAsync2();
-        //HomeViewModel GetDataAsync3();
 
-        Task<SlopeRating> StartRound(NewGameDataViewModel newGameData);
+        // /Select Get
+        Task<HomeViewModel> GetDataAsync();
+        // /Select Put
+        //Task<CreateNewGameViewModel> StartRound(NewGameDataViewModel newGameData);
+        Task<StrokesViewModel> StartRound(NewGameDataViewModel newGameData);
+
+        //Task<CreateNewGameViewModel> StartRound(int handicap, int gender, int course, int tee);
     }
 }
