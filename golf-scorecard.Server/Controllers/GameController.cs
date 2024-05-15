@@ -14,12 +14,12 @@ namespace golf_scorecard.Server.Controllers
             _gameService = gameService;
         }
 
-        //[HttpGet()]
-        //public async Task<IActionResult> GetGameData()
-        //{
-        //    var getdata = await _gameService.GetGameData();
+        [HttpGet("{course}")]
+        public async Task<IActionResult> GetCourseData(int course)
+        {
+            var getdata = await _gameService.GetCourseData(course);
 
-        //    return Ok(getdata);
-        //}
+            return Ok(getdata);
+        }
     }
 }

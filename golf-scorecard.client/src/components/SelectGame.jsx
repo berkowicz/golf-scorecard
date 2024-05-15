@@ -97,22 +97,22 @@ const SelectGame = ({ gameSettingsToHome }) => {
 
     const handleHandicapChange = (event) => {
         setHandicap(parseInt(event.target.value));
-        console.log("handicap: ", typeof event.target.value);
+        console.log("handicap: ", event.target.value);
     };
 
     const handleCourseChange = (course) => {
         setCourse(parseInt(course));
-        console.log("course-id: ", typeof course);
+        console.log("course-id: ", course);
     };
 
     const handleTeeChange = (tee) => {
         setTee(parseInt(tee));
-        console.log("tee-id: ", typeof tee);
+        console.log("tee-id: ", tee);
     };
 
     const handleGenderChange = (gender) => {
         setGender(parseInt(gender));
-        console.log("gender-id: ", typeof gender);
+        console.log("gender-id: ", gender);
     };
 
 

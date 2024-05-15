@@ -1,7 +1,9 @@
-﻿namespace golf_scorecard.Server.Services
+﻿using golf_scorecard.Server.Models.ViewModels;
+
+namespace golf_scorecard.Server.Services
 {
     public interface IGameService
     {
-        //Task<HomeViewModel> GetGameData();
+        Task<HolesViewModel> GetCourseData(int course);
     }
 }
