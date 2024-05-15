@@ -20,7 +20,7 @@ const Home = () => {
     const [gender, setGender] = useState(0);
     const [tee, setTee] = useState(0);
     const [handicap, setHandicap] = useState(0);
-    const [strokes, setStrokes] = useState(0);
+    const [extraStrokes, setExtraStrokes] = useState(0);
 
     //Create game
     const [gameGUID, setGameGUID] = useState(null)
@@ -36,7 +36,7 @@ const Home = () => {
         setTee(data.tee);
         setGender(data.gender);
         setHandicap(data.handicap);
-        setStrokes(data.strokes);
+        setExtraStrokes(data.strokes);
         setGameSelected(data.bool); //true
         console.log('course from home: ',data.course)
         console.log('tee from home: ', data.tee)
@@ -51,7 +51,7 @@ const Home = () => {
                 <SelectGame gameSettingsToHome={selectedGameChildEvent} />
             ) : (
                     <>
-                        {(gameSelected && !gameFinished) ? <Game course={course} gender={gender} tee={tee} handicap={handicap} strokes={strokes} /> : null}
+                        {(gameSelected && !gameFinished) ? <Game course={course} gender={gender} tee={tee} handicap={handicap} extraStrokes={extraStrokes} /> : null}
                 {gameFinished ? <ScoreScreen /> : null}
             </>
           )}
