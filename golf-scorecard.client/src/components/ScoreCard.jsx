@@ -1,8 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios'; // Import Axios
-import Tee from "./SelectGameChildren/Tee";
-import Course from "./SelectGameChildren/Course";
-import Gender from './SelectGameChildren/Gender';
+import React, { useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
@@ -10,12 +6,8 @@ import '../App.css';
 
 const apiHost = "https://localhost:7287/api/Game";
 
-const Game = ({ holes, submitScoreToGame }) => {
+const ScoreCard = ({ holes, submitScoreToGame }) => {
 
-    // Define state variables to store the data
-    //const [holesStrokes, setHolesStrokes] = useState([])
-    const [sortedIndex, setSortedIndex] = useState([]);
-    //const [extraStrokes2, setExtraStrokes2] = useState(new Array(holes.length).fill(0));
     const [scores, setScores] = useState(new Array(holes.length).fill(''));
     const result = ["Quadruple Bogey", "Tripple Bogey", "Double Bogey", "Bogey", "Par", "Birdie", "Eagle", "Albatros", "Hole In One",]
 
@@ -51,13 +43,15 @@ const Game = ({ holes, submitScoreToGame }) => {
 
     return (
         <Container>
-            <h1>Front 9</h1>
             <Table responsive striped bordered hover >
                 <thead>
                     <tr>
-                        <th class="fixed">Hole</th>
+                        <th colSpan={19}>In</th>
+                    </tr>
+                    <tr>
+                        <td>Hole</td>
                         {holes.map((hole) => (
-                            hole.id < 10 && <th key={hole.id}>{hole.number}</th>
+                            hole.id < 10 && <td key={hole.id}>{hole.number}</td>
                         ))}
                     </tr>
                 </thead>
@@ -78,11 +72,12 @@ const Game = ({ holes, submitScoreToGame }) => {
                         <td>Score</td>
                         {holes.map((hole, index) => (
                             hole.id < 10 && <td key={hole.id}>
-                                <input
+                                <input class="center"
                                     type="number"
                                     value={scores[index]}
                                     onChange={(event) => handleScoreChange(index, event)}
                                     min="0"
+                                    data-bs-theme="light"
                                 />
                             </td>
                         ))}
@@ -96,14 +91,16 @@ const Game = ({ holes, submitScoreToGame }) => {
                 </tbody>
             </Table>
 
-            <h1>Back 9</h1>
 
             <Table responsive striped bordered hover >
                 <thead>
                     <tr>
-                        <th class="fixed">Hole</th>
+                        <th colSpan={19}>Out</th>
+                    </tr>
+                    <tr>
+                        <td>Hole</td>
                         {holes.map((hole) => (
-                            hole.id > 9 && <th key={hole.id}>{hole.number}</th>
+                            hole.id > 9 && <td key={hole.id}>{hole.number}</td>
                         ))}
                     </tr>
                 </thead>
@@ -129,6 +126,7 @@ const Game = ({ holes, submitScoreToGame }) => {
                                     value={scores[index]}
                                     onChange={(event) => handleScoreChange(index, event)}
                                     min="0"
+                                    class="center"
                                 />
                             </td>
                         ))}
@@ -141,43 +139,9 @@ const Game = ({ holes, submitScoreToGame }) => {
                     </tr>
                 </tbody>
             </Table>
-        <Button onClick={handleClick} type="button" value="input">Finish Game</Button>
+            <Button variant="primary" size="lg" onClick={handleClick} type="button" value="input">Finish Game</Button>
         </Container>
-
-        //<div>
-        //    <h1>Golf Scorecard</h1>
-        //    <table>
-        //        <thead>
-        //            <tr>
-        //                <th>Hole</th>
-        //                <th>Index</th>
-        //                <th>Par</th>
-        //                <th>Score</th>
-        //                <th>Result</th>
-        //            </tr>
-        //        </thead>
-        //        <tbody>
-        //            {holes.map((hole, index) => (
-        //                <tr key={hole.id}>
-        //                    <td>{hole.number}</td>
-        //                    <td>{hole.holeIndex}</td>
-        //                    <td>{hole.par}</td>
-        //                    <td>
-        //                        <input
-        //                            type="number"
-        //                            value={scores[index]}
-        //                            onChange={(event) => handleScoreChange(index, event)}
-        //                            min="0"
-        //                        />
-        //                    </td>
-        //                    <td>{result[hole.par-scores[index]+4]}</td>
-        //                </tr>
-        //            ))}
-        //        </tbody>
-        //    </table>
-        //    <Button onClick={handleClick} type="button" value="input">Finish Game</Button>
-        //</div>
     );
 };
 
-export default Game;
+export default ScoreCard;

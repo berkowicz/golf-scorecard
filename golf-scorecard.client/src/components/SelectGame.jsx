@@ -5,7 +5,6 @@ import Course from "./SelectGameChildren/Course";
 import Gender from './SelectGameChildren/Gender';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
 import Container from 'react-bootstrap/Container';
 import '../App.css';
 
@@ -23,8 +22,6 @@ const SelectGame = ({ gameSettingsToHome }) => {
     const [gender, setGender] = useState(0);
     const [tee, setTee] = useState(0);
     const [handicap, setHandicap] = useState(18);
-    const [submitData, setSubmitData] = useState([]);
-    const [strokes, setStrokes] = useState(0);
 
     useEffect(() => {
         // Fetch the data when the component mounts
@@ -56,8 +53,6 @@ const SelectGame = ({ gameSettingsToHome }) => {
 
             const x = data.strokes;
 
-            await setStrokes(x)
-
             return x;
         } catch (error) {
             console.error('Error sending data:', error);
@@ -71,8 +66,6 @@ const SelectGame = ({ gameSettingsToHome }) => {
             const data2 = [tee, course, gender, handicap];
             let strokesLocal;
 
-            await setSubmitData(data2);
-
             const x = postData();
             await x.then(result => {
                 const value = result; // Assign the resolved value to a constant
@@ -82,9 +75,9 @@ const SelectGame = ({ gameSettingsToHome }) => {
             const data = {
                 bool: true,
                 course: course,
-                tee: tee,
-                gender: gender,
-                handicap: handicap,
+                //tee: tee,
+                //gender: gender,
+                //handicap: handicap,
                 strokes: strokesLocal
             };
             console.log(x)

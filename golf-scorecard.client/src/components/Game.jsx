@@ -1,33 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios'; // Import Axios
-import Tee from "./SelectGameChildren/Tee";
-import Course from "./SelectGameChildren/Course";
-import Gender from './SelectGameChildren/Gender';
 import ScoreCard from './ScoreCard';
 import ScoreScreen from './ScoreScreen';
-import Button from 'react-bootstrap/Button';
-
 
 const apiHost = "https://localhost:7287/api/Game";
 
-const Game = ({ course, gender, tee, handicap, extraStrokes }) => {
+const Game = ({ course, extraStrokes }) => {
 
     // Define state variables to store the data
     const [holes, setHoles] = useState([]);
-    const [strokes, setStrokes] = useState([])
     const [gameFinished, setGameFinished] = useState(false);
     const [score, setScore] = useState(0);
-    //const result = ["Hole In One", "Albatros", "Eagle", "Birdie", "Par", "Boggey"]
-
-    //const [scores, setScores] = useState(new Array(holes.length).fill(''));
-
-    // Function to handle input change for a specific hole
-    //const handleScoreChange = (index, event) => {
-    //    const newScores = [...scores];
-    //    newScores[index] = event.target.value; // Update the score for the corresponding hole
-    //    setScores(newScores);
-    //}; 
-
     
     useEffect(() => {
         // Fetch the data when the component mounts
@@ -70,37 +52,7 @@ const Game = ({ course, gender, tee, handicap, extraStrokes }) => {
                 </>
             )}
 
-        </div>
-        //<div>
-        //    <h1>Golf Scorecard</h1>
-        //    <table>
-        //        <thead>
-        //            <tr>
-        //                <th>Hole</th>
-        //                <th>Index</th>
-        //                <th>Par</th>
-        //                <th>Score</th>
-        //            </tr>
-        //        </thead>
-        //        <tbody>
-        //            {holes.map((hole, index) => (
-        //                <tr key={hole.id}>
-        //                    <td>{hole.number}</td>
-        //                    <td>{hole.holeIndex}</td>
-        //                    <td>{hole.par}</td>
-        //                    <td>
-        //                        <input
-        //                            type="number"
-        //                            value={scores[index]}
-        //                            onChange={(event) => handleScoreChange(index, event)}
-        //                            min="0"
-        //                        />
-        //                    </td>
-        //                </tr>
-        //            ))}
-        //        </tbody>
-        //    </table>
-        //</div>
+        </div>      
     );
 };
 
