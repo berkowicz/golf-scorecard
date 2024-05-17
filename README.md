@@ -44,7 +44,7 @@ Controller -> IGameService -> GameService.
 
 ## Database Diagram
 <div align="center">
-![db-diagram-golf-scorecard](https://github.com/berkowicz/golf-scorecard/assets/112638774/17a7bef0-75c3-423e-a91d-692ed0140d65)
+ <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/112638774/331634253-17a7bef0-75c3-423e-a91d-692ed0140d65.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240517%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240517T144150Z&X-Amz-Expires=300&X-Amz-Signature=1396979be595f8035b85268b6309ca9d90da50b9e809fa438220f301f3cb2338&X-Amz-SignedHeaders=host&actor_id=112638774&key_id=0&repo_id=790170004" />
 </div>
 
 ## Contributors
