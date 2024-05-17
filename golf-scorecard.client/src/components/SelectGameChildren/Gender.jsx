@@ -1,4 +1,5 @@
 import React from 'react';
+import Form from 'react-bootstrap/Form';
 
 const Gender = ({ gender, genders, setGenderChild }) => {
 
@@ -7,14 +8,12 @@ const Gender = ({ gender, genders, setGenderChild }) => {
     };
 
     return (
-        <label>
-            <select value={gender} onChange={handleGenderChange}>
+            <Form.Select size="lg" value={gender} onChange={handleGenderChange}>
                 <option value="">Select Gender</option>
                 {genders.map(gender => (
                     <option key={gender.id} value={gender.id}>{gender.type}</option>
                 ))}
-            </select>
-        </label>
+            </Form.Select>
     );
 };
 

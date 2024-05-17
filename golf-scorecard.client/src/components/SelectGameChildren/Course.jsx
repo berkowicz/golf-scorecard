@@ -1,4 +1,5 @@
 import React from 'react';
+import Form from 'react-bootstrap/Form';
 
 const Course = ({ course, courses, setCourseChild }) => {
 
@@ -9,14 +10,12 @@ const Course = ({ course, courses, setCourseChild }) => {
     /*onChange = { e => setCourseChild(e.target.value) }*/
 
     return (
-        <label>
-            <select value={course} onChange={handleCourseChange}>
+            <Form.Select size="lg" value={course} onChange={handleCourseChange}>
                 <option value="">Select Course</option>
                 {courses.map(course => (
                     <option key={course.id} value={course.id}>{course.name}</option>
                 ))}
-            </select>
-        </label>
+            </Form.Select>
     );
 };
 

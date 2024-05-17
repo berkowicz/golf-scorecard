@@ -6,6 +6,8 @@ import Gender from './SelectGameChildren/Gender';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import Container from 'react-bootstrap/Container';
+import '../App.css';
 
 let config = { headers: {} };
 
@@ -116,140 +118,39 @@ const SelectGame = ({ gameSettingsToHome }) => {
     };
 
 
-    //const postData = async () => {
-
-    //    //const response = await axios.post(`${apiHost}/${tee}/${course}/${gender}/${handicap}`);
-    //    //console.log('Response from backend:', response.data);
-    //    const response = await fetch(`${apiHost}/${tee}/${course}/${gender}/${handicap}`, {
-    //            method: 'POST'})
-    //        .then((response) => response.json())
-
-
-    //        console.log(response)
-
-    //};
-
-
-    //const handleClick = () => {
-    //    // Example submitData array
-    //    //const submitData2 = [parseInt(tee), parseInt(course), parseInt(gender), parseInt(handicap)];
-    //    ////const submitData2 = [tee, course, gender, handicap]; // Assuming these values are defined in your component's state
-    //    //console.log(submitData2)
-    //    postData();
-    //};
-
-
-
-
-    //const postData = async () => {
-    //    // POST request using fetch with async/await
-    //    const requestOptions = {
-    //        method: 'POST',
-    //        headers: { 'Content-Type': 'application/json' },
-    //        body: JSON.stringify({ title: 'React POST Request Example' })
-    //    };
-    //    const response = await fetch('https://reqres.in/api/posts', requestOptions);
-    //    const data = await response.json();
-    //    this.setState({ postId: data.id });
-    //}
-
-
-    //const SendGuess = async () => {
-    //    //Add put method to header config
-    //    let putConfig = {
-    //        ...config,
-    //        method: "PUT",
-    //    };
-
-    //    const response = await fetch(`${apiHost}`, putConfig)
-    //        .then((response) => response.json())
-    //        .then((result) => {
-
-    //            //Work around to make the json in same PascalCasing
-    //            const resultWithUppercaseKeys = Object.keys(result).reduce(
-    //                (acc, key) => {
-    //                    acc[key.charAt(0).toUpperCase() + key.slice(1)] = result[key];
-    //                    return acc;
-    //                },
-    //                {}
-    //            );
-
-    //            if (result.correct) {
-    //                setGameFinished(true);
-    //            }
-
-    //            setAttempts((prevAttempts) => [
-    //                ...prevAttempts,
-    //                JSON.stringify(resultWithUppercaseKeys),
-    //            ]);
-    //            setCorrectWord(result.word);
-    //        });
-
-    //    setGuess("");
-    //};
-
-
-    //const postData = async () => {
-    //    try {
-
-    //        // Make the POST request to create new data
-    //        const requestOptions = {
-    //            method: 'POST',
-    //            headers: { 'Content-Type': 'application/json' },
-    //            body: JSON.stringify({ handicap, gender, course, tee })
-    //        };
-    //        const response = await fetch(apiHost, requestOptions)
-    //        //    {
-    //        //    method: 'POST',
-    //        //    headers: {
-    //        //        'Content-Type': 'application/json', // Assuming JSON data
-    //        //    },
-    //        //    body: JSON.stringify(submitData), // Convert requestData to JSON string
-    //        //});
-    //        const createdData = await response.json();
-    //        newGameID(createdData)
-    //        console.log('Data created:', createdData);
-    //    } catch (error) {
-    //        console.error('Error creating data:', error);
-    //    }
-    //}
 
     return (
-        <div>
-            <h1>Golf Start Screen</h1>
-            <Form>
-                <Form.Group className="mb-3">
-                    <Form.Label column="lg" lg={2}>
-                        Handicap:
-                    </Form.Label>
-                    <Form.Range
-                        type="range"
-                        step={1}
-                        min={0}
-                        max={36}
-                        value={handicap}
-                        onChange={handleHandicapChange} />
-                    {handicap}
-                </Form.Group>
+        <Container fluid="md">
+            <h1>Daniel's Golf Scorecard</h1>
+            <Form className="align-items-center">
+                    <Form.Group className="mb-3">
+                        Handicap: {handicap}
+                        <Form.Range
+                            type="range"
+                            step={1}
+                            min={0}
+                            max={36}
+                            value={handicap}
+                            onChange={handleHandicapChange}></Form.Range>
+                    </Form.Group>
 
-                <InputGroup className="mb-3">
-                    Course:
-                    <Course course={course} courses={courses} setCourseChild={handleCourseChange} />
-                </InputGroup>
+                    <Form.Group className="mb-3">
+                        <Course course={course} courses={courses} setCourseChild={handleCourseChange} />
+                    </Form.Group>
 
-                <InputGroup className="mb-3">
-                    Tee:
-                    <Tee tee={tee} tees={tees} setTeeChild={handleTeeChange} />
-                </InputGroup>
+                    <Form.Group className="mb-3">
+                        <Tee tee={tee} tees={tees} setTeeChild={handleTeeChange} />
+                    </Form.Group>
 
-                <InputGroup className="mb-3">
-                    Gender:
-                    <Gender gender={gender} genders={genders} setGenderChild={handleGenderChange} />
-                </InputGroup>
+                    <Form.Group className="mb-3">
+                        <Gender gender={gender} genders={genders} setGenderChild={handleGenderChange} />
+                    </Form.Group>
 
-                <Button onClick={handleClick} type="button" value="input">Start Game</Button>
+                    <div className="d-grid gap-2">
+                        <Button variant="primary" size="lg" onClick={handleClick} type="button" value="input">Start Game</Button>
+                    </div>                
             </Form>
-        </div>
+        </Container>
     );
 };
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import Form from 'react-bootstrap/Form';
 
 const Tee = ({ tee, tees, setTeeChild }) => {
 
@@ -7,14 +8,12 @@ const Tee = ({ tee, tees, setTeeChild }) => {
     };
      
     return (
-        <label>
-            <select value={tee} onChange={handleTeeChange}>
+            <Form.Select size="lg" value={tee} onChange={handleTeeChange}>
                 <option value="">Select Tee</option>
                 {tees.map(tee => (
                     <option key={tee.id} value={tee.id}>{tee.type}</option>
                 ))}
-            </select>
-        </label>
+            </Form.Select>
     );
 };
 

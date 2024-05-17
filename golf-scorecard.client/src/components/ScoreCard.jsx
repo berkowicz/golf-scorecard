@@ -4,6 +4,9 @@ import Tee from "./SelectGameChildren/Tee";
 import Course from "./SelectGameChildren/Course";
 import Gender from './SelectGameChildren/Gender';
 import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Table from 'react-bootstrap/Table';
+import '../App.css';
 
 const apiHost = "https://localhost:7287/api/Game";
 
@@ -29,7 +32,6 @@ const Game = ({ holes, submitScoreToGame }) => {
         //Checks that all 18 scores is input
         if (scores.length == 18) {
             const sum = scores.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue), 0);
-            console.log('hej', sum)
 
             //Sends data to parent(Game)
             const data = {
@@ -48,25 +50,34 @@ const Game = ({ holes, submitScoreToGame }) => {
 
 
     return (
-        <div>
-            <h1>Golf Scorecard</h1>
-            <table>
+        <Container>
+            <h1>Front 9</h1>
+            <Table responsive striped bordered hover >
                 <thead>
                     <tr>
-                        <th>Hole</th>
-                        <th>Index</th>
-                        <th>Par</th>
-                        <th>Score</th>
-                        <th>Result</th>
+                        <th class="fixed">Hole</th>
+                        {holes.map((hole) => (
+                            hole.id < 10 && <th key={hole.id}>{hole.number}</th>
+                        ))}
                     </tr>
                 </thead>
                 <tbody>
-                    {holes.map((hole, index) => (
-                        <tr key={hole.id}>
-                            <td>{hole.number}</td>
-                            <td>{hole.holeIndex}</td>
-                            <td>{hole.par}</td>
-                            <td>
+                    <tr>
+                        <td>Index</td>
+                        {holes.map((hole) => (
+                            hole.id < 10 && <td key={hole.id}>{hole.holeIndex}</td>
+                        ))}
+                    </tr>
+                    <tr>
+                        <td>Par</td>
+                        {holes.map((hole) => (
+                            hole.id < 10 && <td key={hole.id}>{hole.par}</td>
+                        ))}
+                    </tr>
+                    <tr>
+                        <td>Score</td>
+                        {holes.map((hole, index) => (
+                            hole.id < 10 && <td key={hole.id}>
                                 <input
                                     type="number"
                                     value={scores[index]}
@@ -74,13 +85,98 @@ const Game = ({ holes, submitScoreToGame }) => {
                                     min="0"
                                 />
                             </td>
-                            <td>{result[hole.par-scores[index]+4]}</td>
-                        </tr>
-                    ))}
+                        ))}
+                    </tr>
+                    <tr>
+                        <td>Result</td>
+                        {holes.map((hole) => (
+                            hole.id < 10 && <td key={hole.id}>{result[hole.par - scores[hole.id-1] + 4]}</td>
+                        ))}
+                    </tr>
                 </tbody>
-            </table>
-            <Button onClick={handleClick} type="button" value="input">Finish Game</Button>
-        </div>
+            </Table>
+
+            <h1>Back 9</h1>
+
+            <Table responsive striped bordered hover >
+                <thead>
+                    <tr>
+                        <th class="fixed">Hole</th>
+                        {holes.map((hole) => (
+                            hole.id > 9 && <th key={hole.id}>{hole.number}</th>
+                        ))}
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Index</td>
+                        {holes.map((hole) => (
+                            hole.id > 9 && <td key={hole.id}>{hole.holeIndex}</td>
+                        ))}
+                    </tr>
+                    <tr>
+                        <td>Par</td>
+                        {holes.map((hole) => (
+                            hole.id > 9 && <td key={hole.id}>{hole.par}</td>
+                        ))}
+                    </tr>
+                    <tr>
+                        <td>Score</td>
+                        {holes.map((hole, index) => (
+                            hole.id > 9 && <td key={hole.id}>
+                                <input
+                                    type="number"
+                                    value={scores[index]}
+                                    onChange={(event) => handleScoreChange(index, event)}
+                                    min="0"
+                                />
+                            </td>
+                        ))}
+                    </tr>
+                    <tr>
+                        <td>Result</td>
+                        {holes.map((hole) => (
+                            hole.id > 9 && <td key={hole.id}>{result[hole.par - scores[hole.id - 1] + 4]}</td>
+                        ))}
+                    </tr>
+                </tbody>
+            </Table>
+        <Button onClick={handleClick} type="button" value="input">Finish Game</Button>
+        </Container>
+
+        //<div>
+        //    <h1>Golf Scorecard</h1>
+        //    <table>
+        //        <thead>
+        //            <tr>
+        //                <th>Hole</th>
+        //                <th>Index</th>
+        //                <th>Par</th>
+        //                <th>Score</th>
+        //                <th>Result</th>
+        //            </tr>
+        //        </thead>
+        //        <tbody>
+        //            {holes.map((hole, index) => (
+        //                <tr key={hole.id}>
+        //                    <td>{hole.number}</td>
+        //                    <td>{hole.holeIndex}</td>
+        //                    <td>{hole.par}</td>
+        //                    <td>
+        //                        <input
+        //                            type="number"
+        //                            value={scores[index]}
+        //                            onChange={(event) => handleScoreChange(index, event)}
+        //                            min="0"
+        //                        />
+        //                    </td>
+        //                    <td>{result[hole.par-scores[index]+4]}</td>
+        //                </tr>
+        //            ))}
+        //        </tbody>
+        //    </table>
+        //    <Button onClick={handleClick} type="button" value="input">Finish Game</Button>
+        //</div>
     );
 };
 
