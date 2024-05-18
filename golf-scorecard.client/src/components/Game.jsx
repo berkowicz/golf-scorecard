@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import ScoreCard from './ScoreCard';
-import ScoreScreen from './ScoreScreen';
+import ScoreCard from './GameChildren/ScoreCard';
+import ScoreScreen from './GameChildren/ScoreScreen';
 
 const apiHost = "https://localhost:7287/api/Game";
 
@@ -24,8 +24,7 @@ const Game = ({ course, extraStrokes }) => {
             const data = await response.json();
             console.log('fetch holes: ', data.holes);
 
-            // Extract and set the data in state variables
-            setHoles(data.holes);
+            await setHoles(data.holes);
             console.log(data.holes[1])
 
         } catch (error) {
@@ -34,10 +33,8 @@ const Game = ({ course, extraStrokes }) => {
     };
 
     const setFinishedGame = (data) => {
-        // Update parent state based on child event
         setScore(data.score);
         setGameFinished(data.bool); //true
-        console.log('course from home: ', data.score)
     };
 
 

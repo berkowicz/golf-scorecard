@@ -32,8 +32,7 @@ const SelectGame = ({ gameSettingsToHome }) => {
     const fetchData = async () => {
         try {
             // Fetch data from the API endpoint
-            const response = await fetch(apiHost); // Replace '/api/data' with your actual API endpoint
-            //console.log(response.text);
+            const response = await fetch(apiHost);
             const data = await response.json();
 
             // Extract and set the data in state variables
@@ -63,7 +62,7 @@ const SelectGame = ({ gameSettingsToHome }) => {
 
         if (tee != 0 && course != 0 && gender != 0) {
             /*const dataarray = [[tee], [course], [gender], [handicap.tostring()]]*/
-            const data2 = [tee, course, gender, handicap];
+            //const data2 = [tee, course, gender, handicap];
             let strokesLocal;
 
             const x = postData();

@@ -7,8 +7,6 @@ const Course = ({ course, courses, setCourseChild }) => {
         setCourseChild(event.target.value);
     };
 
-    /*onChange = { e => setCourseChild(e.target.value) }*/
-
     return (
             <Form.Select size="lg" value={course} onChange={handleCourseChange}>
                 <option value="">Select Course</option>
