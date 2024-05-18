@@ -6,7 +6,6 @@ const apiHost = "https://localhost:7287/api/Game";
 
 const ScoreScreen = ({ score, holes, strokes }) => {
 
-    const [comparedToHandicap2, setComparedToHandicap2] = useState(0)
     const [totalPar, setTotalPar] = useState(0);
 
     const netto = score - strokes;

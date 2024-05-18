@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import SelectGame from './SelectGame';
-import ScoreScreen from './ScoreScreen';
+import ScoreScreen from './GameChildren/ScoreScreen';
 import Game from './Game';
 
 const Home = () => {

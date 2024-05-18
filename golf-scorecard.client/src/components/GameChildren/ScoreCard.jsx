@@ -2,7 +2,7 @@ import React, { useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
-import '../App.css';
+import '../../App.css';
 
 const apiHost = "https://localhost:7287/api/Game";
 
@@ -21,7 +21,7 @@ const ScoreCard = ({ holes, submitScoreToGame }) => {
 
     //Button
     const handleClick = () => {
-        //Checks that all 18 scores is input
+        //Checks that all 18 scores is done
         if (scores.length == 18) {
             const sum = scores.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue), 0);
 
